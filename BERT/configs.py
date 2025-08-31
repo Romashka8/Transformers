@@ -78,7 +78,12 @@ class ConfigsBERT:
 
 if __name__ == '__main__':
 	
-	test = ConfigsBERT('distilbert-base-uncased', 'test', 'test', 'excel')
+	test_path = Path(__file__).resolve().parent.parent
+	test = ConfigsBERT(
+		'distilbert-base-uncased',
+		os.path.join(test_path, 'data/tests'),
+		os.path.join(test_path, 'data/tests'),
+		'excel')
 	print(test.get_configs())
 
 # ---------------------------------------------------------------------------------------------------------------------------------
