@@ -1,8 +1,5 @@
 # ---------------------------------------------------------------------------------------------------------------------------------
 
-import warnings
-warnings.filterwarnings('ignore')
-
 import os
 import sys
 import gc
@@ -62,7 +59,29 @@ class InferenceBERT:
 
 		from configs import ConfigsBERT
 
+		abs_path = Path(__file__).resolve().parent.parent
+		configs = ConfigsBERT(
+						MODEL_NAME = 'distilbert-base-uncased',
+						DATA_PATH = 'absolute/data/path/tonality.xlsx',
+						SAVE_PATH = 'absolute/save/path/',
+						DATA_FORMAT = 'excel',
+						BATCH_SIZE = 3,
+						ADD_SPECIAL_TOKENS = True,
+						TRUNCATION = True,
+						MAX_LENGTH = 512
+			).get_configs()
 
+		dataset = DatasetBERT(
+				'/absolute/data/path/data.xlsx',
+				pd.read_excel
+		)
+
+		bert = InferenceBERT(
+				bert_configs=configs,
+				data=dataset,
+				emb_column='sentence'
+			)
+		bert.inference(0, 1)
 	"""
 	def __init__(self,
 				bert_configs: Union[EasyDict, ConfigsBERT],
