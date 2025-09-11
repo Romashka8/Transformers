@@ -39,6 +39,10 @@ class ConfigsBERT:
 	ADD_SPECIAL_TOKENS: bool=True
 	TRUNCATION: bool=True
 	MAX_LENGTH: int=512
+	RETURN_TOKEN_TYPE_IDS: bool=False,
+	PADDING:str='max_length',
+	RETURN_ATTENTION_MASK: bool=True,
+	RETURN_TENSORS: str='pt'
 	
 	cfg: EasyDict = field(init=False, default_factory=EasyDict)
 
@@ -61,7 +65,7 @@ class ConfigsBERT:
 		self.cfg.MODELS_MAP = {
 			'bert-base-uncased': 'bert-base-uncased',
 			'distilbert-base-uncased': 'distilbert-base-uncased',
-			'rubert-base-cased': 'rubert-base-cased',
+			'rubert-base-cased': 'rubert-base-cased'
 		}
 		assert self.MODEL_NAME in self.cfg.MODELS_MAP.keys(), f'Incorrect MODEL_NAME - "{self.MODEL_NAME}"!'
 		self.cfg.MODEL_NAME = self.cfg.MODELS_MAP[self.MODEL_NAME]
@@ -70,6 +74,10 @@ class ConfigsBERT:
 		self.cfg.ADD_SPECIAL_TOKENS = self.ADD_SPECIAL_TOKENS
 		self.cfg.TRUNCATION = self.TRUNCATION
 		self.cfg.MAX_LENGTH = self.MAX_LENGTH
+		self.cfg.RETURN_TOKEN_TYPE_IDS = self.RETURN_TOKEN_TYPE_IDS
+		self.cfg.PADDING = self.PADDING
+		self.cfg.RETURN_ATTENTION_MASK = self.RETURN_ATTENTION_MASK
+		self.cfg.RETURN_TENSORS = self.RETURN_TENSORS
 
 	def get_configs(self):
 		return self.cfg
