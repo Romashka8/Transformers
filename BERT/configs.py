@@ -39,9 +39,9 @@ class ConfigsBERT:
 	ADD_SPECIAL_TOKENS: bool=True
 	TRUNCATION: bool=True
 	MAX_LENGTH: int=512
-	RETURN_TOKEN_TYPE_IDS: bool=False,
-	PADDING:str='max_length',
-	RETURN_ATTENTION_MASK: bool=True,
+	RETURN_TOKEN_TYPE_IDS: bool=False
+	PADDING:str='max_length'
+	RETURN_ATTENTION_MASK: bool=True
 	RETURN_TENSORS: str='pt'
 	
 	cfg: EasyDict = field(init=False, default_factory=EasyDict)
